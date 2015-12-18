@@ -23,7 +23,7 @@ var ReactBlur = React.createClass({
   },
 
   componentDidMount() {
-    var {blurRadius} = this.props;
+    var {blurRadius, onBlurCompleted} = this.props;
     var container = React.findDOMNode(this);
 
     this.height = container.offsetHeight;
@@ -36,7 +36,7 @@ var ReactBlur = React.createClass({
     this.img = new Image();
     this.img.crossOrigin = 'Anonymous';
     this.img.onload = () => {
-      stackBlurImage( this.img, this.canvas, blurRadius, this.width, this.height);
+      stackBlurImage( this.img, this.canvas, blurRadius, this.width, this.height, onBlurCompleted);
     };
     this.img.src = this.props.img;
 
@@ -66,18 +66,20 @@ var ReactBlur = React.createClass({
 
   doResize() {
     var container = React.findDOMNode(this);
+    var {onBlurCompleted} = this.props;
 
     this.height = container.offsetHeight;
     this.width = container.offsetWidth;
 
-    stackBlurImage(this.img, this.canvas, this.props.blurRadius, this.width, this.height);
+    stackBlurImage(this.img, this.canvas, this.props.blurRadius, this.width, this.height, onBlurCompleted);
   },
 
   componentWillUpdate(nextProps) {
+    var {onBlurCompleted} = this.props;
     if (this.img.src !== nextProps.img) {
       this.img.src = nextProps.img;
     }
-    stackBlurImage(this.img, this.canvas, nextProps.blurRadius, this.width, this.height);
+    stackBlurImage(this.img, this.canvas, nextProps.blurRadius, this.width, this.height, onBlurCompleted);
   },
 
   render() {

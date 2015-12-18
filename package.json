@@ -2,7 +2,7 @@
   "name": "react-blur",
   "version": "0.2.5",
   "description": "React component for creating blurred backgrounds.",
-  "main": "dist/blur.js",
+  "main": "src/blur.jsx",
   "scripts": {
     "prepublish": "mkdir -p dist && babel src/blur.jsx -u -o dist/blur.js --stage 1 && lessc src/blur.less dist/blur.css",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +23,8 @@
   "author": "javierbyte",
   "license": "ISC",
   "devDependencies": {
+    "babel": "^6.3.13",
+    "babel-cli": "^6.3.17",
     "babel-eslint": "^3.1.20",
     "eslint": "^0.24.0",
     "eslint-plugin-babel": "^1.0.0",
